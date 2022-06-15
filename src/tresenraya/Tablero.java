@@ -96,7 +96,7 @@ public class Tablero extends JPanel {
     }
 
     public void colocarFichaIA() {
-        boolean colocada = false;
+        /*boolean colocada = false;
         int i = 0;
         while (i < ficha.length && !colocada) {
             int j = 0;
@@ -108,7 +108,109 @@ public class Tablero extends JPanel {
                 j++;
             }
             i++;
-        }
+        }*/
+
+        
+        boolean continuar = true;
+        do {
+            int num = (int) Math.floor(Math.random() * (1 - 9 + 1) + 9);
+            switch (num) {
+                case 1:
+                    if (ficha[0][0].getTurno() == Ficha.Turno.IA || ficha[0][0].getTurno() == Ficha.Turno.USUARIO) {
+
+                    } else if (ficha[0][0].getTurno() == Ficha.Turno.SIN_ASIGNAR) {
+                        setFicha(0, 0, Ficha.Turno.IA);
+                        setTurno(Ficha.Turno.USUARIO);
+                        repaint();
+                        continuar = false;
+                    }
+
+                    break;
+                case 2:
+                    if (ficha[0][1].getTurno() == Ficha.Turno.IA || ficha[0][1].getTurno() == Ficha.Turno.USUARIO) {
+
+                    } else if (ficha[0][1].getTurno() == Ficha.Turno.SIN_ASIGNAR) {
+                        setFicha(0, 1, Ficha.Turno.IA);
+                        setTurno(Ficha.Turno.USUARIO);
+                        repaint();
+                        continuar = false;
+                    }
+                    break;
+                case 3:
+                    if (ficha[0][2].getTurno() == Ficha.Turno.IA || ficha[0][2].getTurno() == Ficha.Turno.USUARIO) {
+
+                    } else if (ficha[0][2].getTurno() == Ficha.Turno.SIN_ASIGNAR) {
+                        setFicha(0, 2, Ficha.Turno.IA);
+                        setTurno(Ficha.Turno.USUARIO);
+                        repaint();
+                        continuar = false;
+                    }
+                    break;
+                case 4:
+                    if (ficha[1][0].getTurno() == Ficha.Turno.IA || ficha[1][0].getTurno() == Ficha.Turno.USUARIO) {
+
+                    } else if (ficha[1][0].getTurno() == Ficha.Turno.SIN_ASIGNAR) {
+                        setFicha(1, 0, Ficha.Turno.IA);
+                        setTurno(Ficha.Turno.USUARIO);
+                        repaint();
+                        continuar = false;
+                    }
+                    break;
+                case 5:
+                    if (ficha[1][1].getTurno() == Ficha.Turno.IA || ficha[1][1].getTurno() == Ficha.Turno.USUARIO) {
+
+                    } else if (ficha[1][1].getTurno() == Ficha.Turno.SIN_ASIGNAR) {
+                        setFicha(1, 1, Ficha.Turno.IA);
+                        setTurno(Ficha.Turno.USUARIO);
+                        repaint();
+                        continuar = false;
+                    }
+                    break;
+                case 6:
+                    if (ficha[1][2].getTurno() == Ficha.Turno.IA || ficha[1][2].getTurno() == Ficha.Turno.USUARIO) {
+
+                    } else if (ficha[1][2].getTurno() == Ficha.Turno.SIN_ASIGNAR) {
+                        setFicha(1, 2, Ficha.Turno.IA);
+                        setTurno(Ficha.Turno.USUARIO);
+                        repaint();
+                        continuar = false;
+                    }
+                    break;
+                case 7:
+                    if (ficha[2][0].getTurno() == Ficha.Turno.IA || ficha[2][0].getTurno() == Ficha.Turno.USUARIO) {
+
+                    } else if (ficha[2][0].getTurno() == Ficha.Turno.SIN_ASIGNAR) {
+                        setFicha(2, 0, Ficha.Turno.IA);
+                        setTurno(Ficha.Turno.USUARIO);
+                        repaint();
+                        continuar = false;
+                    }
+                    break;
+                case 8:
+                    if (ficha[2][1].getTurno() == Ficha.Turno.IA || ficha[2][1].getTurno() == Ficha.Turno.USUARIO) {
+
+                    } else if (ficha[2][1].getTurno() == Ficha.Turno.SIN_ASIGNAR) {
+                        setFicha(2, 1, Ficha.Turno.IA);
+                        setTurno(Ficha.Turno.USUARIO);
+                        repaint();
+                        continuar = false;
+                    }
+                    break;
+                case 9:
+                    if (ficha[2][2].getTurno() == Ficha.Turno.IA || ficha[2][2].getTurno() == Ficha.Turno.USUARIO) {
+
+                    } else if (ficha[2][2].getTurno() == Ficha.Turno.SIN_ASIGNAR) {
+                        setFicha(2, 2, Ficha.Turno.IA);
+                        setTurno(Ficha.Turno.USUARIO);
+                        repaint();
+                        continuar = false;
+                    }
+                    break;
+                default:
+                    System.out.println("algo pasa");
+            }
+
+        } while (continuar);
 
     }
 
@@ -136,6 +238,8 @@ public class Tablero extends JPanel {
                 ficha[i][j].setTurno(Ficha.Turno.SIN_ASIGNAR);
             }
         }
+        setFicha(1, 1, Ficha.Turno.IA);
+        setTurno(Ficha.Turno.USUARIO);
         repaint();
     }
 
@@ -146,18 +250,18 @@ public class Tablero extends JPanel {
             hayGanador = true;
         } else if (ficha[1][0].getTurno() == turno && ficha[1][1].getTurno() == turno && ficha[1][2].getTurno() == turno) {
             hayGanador = true;
-        } else if(ficha[2][0].getTurno() == turno && ficha[2][1].getTurno() == turno && ficha[2][2].getTurno() == turno){
-        hayGanador = true;
-        } else if(ficha[0][0].getTurno() == turno && ficha[1][0].getTurno() == turno && ficha[2][0].getTurno() == turno){
-        hayGanador = true;
-        } else if(ficha[0][1].getTurno() == turno && ficha[1][1].getTurno() == turno && ficha[2][1].getTurno() == turno){
-        hayGanador = true;
-        } else if(ficha[0][2].getTurno() == turno && ficha[1][2].getTurno() == turno && ficha[2][2].getTurno() == turno){
-        hayGanador = true;
-        } else if(ficha[0][0].getTurno() == turno && ficha[1][1].getTurno() == turno && ficha[2][2].getTurno() == turno){
-        hayGanador = true;
-        } else if(ficha[0][2].getTurno() == turno && ficha[1][1].getTurno() == turno && ficha[2][0].getTurno() == turno){
-        hayGanador = true;
+        } else if (ficha[2][0].getTurno() == turno && ficha[2][1].getTurno() == turno && ficha[2][2].getTurno() == turno) {
+            hayGanador = true;
+        } else if (ficha[0][0].getTurno() == turno && ficha[1][0].getTurno() == turno && ficha[2][0].getTurno() == turno) {
+            hayGanador = true;
+        } else if (ficha[0][1].getTurno() == turno && ficha[1][1].getTurno() == turno && ficha[2][1].getTurno() == turno) {
+            hayGanador = true;
+        } else if (ficha[0][2].getTurno() == turno && ficha[1][2].getTurno() == turno && ficha[2][2].getTurno() == turno) {
+            hayGanador = true;
+        } else if (ficha[0][0].getTurno() == turno && ficha[1][1].getTurno() == turno && ficha[2][2].getTurno() == turno) {
+            hayGanador = true;
+        } else if (ficha[0][2].getTurno() == turno && ficha[1][1].getTurno() == turno && ficha[2][0].getTurno() == turno) {
+            hayGanador = true;
         }
 
         return hayGanador;

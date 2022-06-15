@@ -19,7 +19,7 @@ public class TresEnRaya extends JFrame {
 
     private int pixelesCuadrados = 200;
 
-    Tablero tablero;
+    Tablero tablero = new Tablero();
 
     public TresEnRaya() {
 
@@ -27,17 +27,20 @@ public class TresEnRaya extends JFrame {
         this.setSize(sizex, sizey + 20);
         this.setLayout(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        primerMovimiento();
+
         iniciarComponentes();
 
     }
 
     private void iniciarComponentes() {
-        tablero = new Tablero();
+        //tablero = new Tablero();
         tablero.setBounds(0, 0, sizex, sizey);
         this.add(tablero);
 
         //primer turno
-        tablero.setTurno(Ficha.Turno.IA);
+        tablero.setTurno(Ficha.Turno.USUARIO);
 
         tablero.addMouseListener(new MouseListener() {
             @Override
@@ -85,19 +88,19 @@ public class TresEnRaya extends JFrame {
                     tablero.colocarFichaIA();
                     tablero.setTurno(Ficha.Turno.USUARIO);
                     tablero.repaint();
-                    
-                    if(tablero.comprobarSiHayGanador(Ficha.Turno.IA)){
+
+                    if (tablero.comprobarSiHayGanador(Ficha.Turno.IA)) {
                         finDelJuego(Ficha.Turno.IA);
-                    } else if (!tablero.quedanCasillasLibres()){
+                    } else if (!tablero.quedanCasillasLibres()) {
                         finDelJuego(Ficha.Turno.SIN_ASIGNAR);
                     }
-                    
+
                 } else {
                     finDelJuego(Ficha.Turno.SIN_ASIGNAR);
                 }
-            } else if (tablero.comprobarSiHayGanador(Ficha.Turno.USUARIO)){
-            finDelJuego(Ficha.Turno.USUARIO);
-            }       
+            } else if (tablero.comprobarSiHayGanador(Ficha.Turno.USUARIO)) {
+                finDelJuego(Ficha.Turno.USUARIO);
+            }
         }
     }
 
@@ -113,6 +116,15 @@ public class TresEnRaya extends JFrame {
                 JOptionPane.showMessageDialog(null, "Empate");
         }
         tablero.reiniciarJuego();
+    }
+
+    public void primerMovimiento() {
+
+        //tablero.colocarFichaIA();
+        tablero.setFicha(1, 1, Ficha.Turno.IA);
+        tablero.setTurno(Ficha.Turno.USUARIO);
+        tablero.repaint();
+
     }
 
     /**
